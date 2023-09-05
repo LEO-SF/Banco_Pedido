@@ -10,6 +10,8 @@ public class Menu {
     static ClientePF aux = new ClientePF();
     public static void main(String[] args) {
 
+        
+
         while(true){
             montaMenu();
             int opcao = scanner.nextInt();
@@ -73,7 +75,7 @@ public class Menu {
             String deleta = scanner.next();
             if(aux.deletarNomePf(deleta) >= 1){
                 System.out.println("Cliente deletado com sucesso!!"+"\n");
-            };
+            }
         }
 
         private static void listarClientes(){

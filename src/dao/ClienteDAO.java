@@ -4,6 +4,10 @@ import classes.Cliente;
 import java.sql.*;
 
 public class ClienteDAO implements OperacoesDAO<Cliente> {
+ 
+    private static final String ERRO = "Exceção SQL";
+    private static final String ERROCLASSE = "Exceção Classe não encontrada";
+
     @Override
     public int inserir(Cliente cli) {
         int chavePrimaria = -1;
@@ -17,11 +21,11 @@ public class ClienteDAO implements OperacoesDAO<Cliente> {
             ResultSet chaves = stmt.getGeneratedKeys();
             if (chaves.next())  chavePrimaria= chaves.getInt(1);
         }catch(SQLException e){
-            System.out.println("Exceção SQL" + e.getMessage() + "\n" + "Verificar classe ClienteDAO.java no método inserir");
+            System.out.println(ERRO + e.getMessage() + "\n" + "Verificar classe ClienteDAO.java no método inserir");
             e.printStackTrace();
         }catch(ClassNotFoundException e){
             e.printStackTrace();
-            System.out.println("Exceção Classe não encontrada:" + e.getMessage() + "\n" + "Verificar classe ClienteDAO.java no método inserir");
+            System.out.println(ERROCLASSE + e.getMessage() + "\n" + "Verificar classe ClienteDAO.java no método inserir");
         }
         return chavePrimaria;
     }
@@ -41,9 +45,9 @@ public class ClienteDAO implements OperacoesDAO<Cliente> {
             }
             return lista;
         }catch(SQLException e){
-            System.out.println("Exceção SQL" + e.getMessage() + "\n" + "Verificar classe ClienteDAO.java no método listarTodos");
+            System.out.println(ERRO + e.getMessage() + "\n" + "Verificar classe ClienteDAO.java no método listarTodos");
         }catch(Exception e){
-            System.out.println("Exceção Classe não encontrada:" + e.getMessage() + "\n" + "Verificar classe ClienteDAO.java no método listarTodos");
+            System.out.println(ERROCLASSE+ e.getMessage() + "\n" + "Verificar classe ClienteDAO.java no método listarTodos");
         }
         return null;
     }
@@ -58,9 +62,9 @@ public class ClienteDAO implements OperacoesDAO<Cliente> {
             stmt.setInt(3, cli.getIdCliente());
             return stmt.executeUpdate();
         }catch(SQLException e){
-            System.out.println("Exceção SQL" + e.getMessage() + "\n" + "Verificar classe ClienteDAO.java no método atualizar");
+            System.out.println(ERRO+ e.getMessage() + "\n" + "Verificar classe ClienteDAO.java no método atualizar");
         }catch(Exception e){
-            System.out.println("Exceção Classe não encontrada:" + e.getMessage() + "\n" + "Verificar classe ClienteDAO.java no método atualizar");
+            System.out.println(ERROCLASSE + e.getMessage() + "\n" + "Verificar classe ClienteDAO.java no método atualizar");
         }
         return -1;
     }
@@ -73,9 +77,9 @@ public class ClienteDAO implements OperacoesDAO<Cliente> {
             System.out.println("Conex�o aberta!");
             return stmt.executeUpdate();
         }catch(SQLException e){
-            System.out.println("Exceção SQL" + e.getMessage() + "\n" + "Verificar classe ClienteDAO.java no método deletar");
+            System.out.println(ERRO + e.getMessage() + "\n" + "Verificar classe ClienteDAO.java no método deletar");
         }catch(Exception e){
-            System.out.println("Exceção Classe não encontrada:" + e.getMessage() + "\n" + "Verificar classe ClienteDAO.java no deletar");
+            System.out.println(ERROCLASSE+ e.getMessage() + "\n" + "Verificar classe ClienteDAO.java no deletar");
         }
         return -1;
     }
@@ -94,9 +98,9 @@ public class ClienteDAO implements OperacoesDAO<Cliente> {
                 p=new Cliente(nome, endereco);
             }
         }catch(SQLException e){
-            System.out.println("Exceção SQL" + e.getMessage() + "\n" + "Verificar classe ClienteDAO.java no método pesquisarID");
+            System.out.println(ERRO+ e.getMessage() + "\n" + "Verificar classe ClienteDAO.java no método pesquisarID");
         }catch(Exception e){
-            System.out.println("Exceção Classe não encontrada:" + e.getMessage() + "\n" + "Verificar classe ClienteDAO.java no método pesquisarID");
+            System.out.println(ERROCLASSE+ e.getMessage() + "\n" + "Verificar classe ClienteDAO.java no método pesquisarID");
         }
         return p;
     }

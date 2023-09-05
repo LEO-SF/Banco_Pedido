@@ -34,14 +34,16 @@ public class MinhaGen<E>{
     }
 
     public void listarTodos() {
-        String auxPessoas = "";
+        StringBuilder auxPessoas = new StringBuilder();
+    
         if (lista != null) {
             for (E objeto : lista) {
                 if (objeto != null)
-                    auxPessoas += objeto + "\n";
+                    auxPessoas.append(objeto).append("\n");
             }
         }
-        System.out.println("\n" + auxPessoas);
+    
+        System.out.println("\n" + auxPessoas.toString());
     }
 }
 
